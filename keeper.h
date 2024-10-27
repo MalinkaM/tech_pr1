@@ -7,30 +7,30 @@ using namespace std;
 
 template <class T>
 class Keeper {
-    T* ptr;
-    int size;
+	T* ptr;
+	int size;
 public:
-    Keeper();
-    ~Keeper();
-    void push();
-    void pop(int);
-    void write(string);
-    void read(string);
-    void show();
-    void edit(int);
+	Keeper();
+	~Keeper();
+	void push();
+	void pop(int);
+	void write(string);
+	void read(string);
+	void show();
+	void edit(int);
 };
 
 template<class T>
 Keeper<T>::Keeper() {
-    cout << "Вызов конструктора по умолчанию для класса Keeper" << endl << endl;
-    ptr = nullptr;
-    size = 0;
+	cout << "Вызов конструктора по умолчанию для класса Keeper" << endl << endl;
+	ptr = nullptr;
+	size = 0;
 }
 
 template<class T>
 Keeper<T>::~Keeper() {
-    cout << "Вызов деструктора для класса Keeper" << endl << endl;
-    delete[] ptr;
+	cout << "Вызов деструктора для класса Keeper" << endl << endl;
+	delete[] ptr;
 }
 
 template<class T>
@@ -86,3 +86,55 @@ void Keeper<T>::show() {
 		}
 	}
 }
+
+template<class T>
+void Keeper<T>::edit(int change) {
+	try {
+		if (size == 0) {
+			exception error("Пусто");
+			throw error;
+		}
+		if (change < 0 || change >= size) {
+			exception bug("Неверный номер");
+			throw bug;
+		}
+		cin >> ptr[change];
+	}
+	catch (exception& bug) {
+		cout << bug.what() << endl << endl;
+	}
+}
+
+template<class T>
+void Keeper<T>::write(string s) {
+	ofstream fout(s, ios::out);
+	try {
+		if (size == 0) {
+			exception error("Пусто");
+			throw error;
+		}
+		fout << size << endl;
+		for (int i = 0; i < size; ++i) {
+			fout << ptr[i] << endl;
+		}
+		fout.close();
+		cout << "Запись прошла успешно" << endl << endl;
+	}
+	catch (exception& error) {
+		cout << error.what() << endl;
+	}
+}
+
+template<class T>
+void Keeper<T>::read(string s) {
+	delete[] ptr;
+	ifstream fin(s, ios::in);
+	fin >> size;
+	ptr = new T[size];
+	for (int i = 0; i < size; ++i) {
+		fin >> ptr[i];
+	}
+	fin.close();
+	cout << "Прочитано успешно" << endl << endl;
+}
+#pragma once

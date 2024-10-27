@@ -9,7 +9,7 @@ private:
 	string fio;      //ФИО
 	string live;     //Годы жизни
 	string works;    //Произведения
-	string bio;      //Кратка биография
+	string bio;      //Краткая биография
 public:
 	Novel();
 	~Novel();
@@ -21,4 +21,4 @@ public:
 	friend istream& operator >> (istream& in, Novel& obj);
 	Novel& operator =(const Novel& other);
 };
-#pragma once
+
