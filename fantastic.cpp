@@ -45,7 +45,10 @@ ofstream& operator<<(ofstream& fout, Fantastic& obj) {
 }
 
 ifstream& operator>>(ifstream& fin, Fantastic& obj) {
-	fin >> obj.fio >> obj.live >> obj.works >> obj.films;
+	getline(fin >> ws, obj.fio);
+	getline(fin >> ws, obj.live);
+	getline(fin >> ws, obj.works);
+	getline(fin >> ws, obj.films);
 	return fin;
 }
 
@@ -54,7 +57,7 @@ ostream& operator<<(ostream& out, Fantastic& obj) {
 	out << "ФИО писателя фантаста: " << obj.fio << endl;
 	out << "Годы жизни: " << obj.live << endl;
 	out << "Произведения: " << obj.works << endl;
-	out << "Краткая биография: " << obj.films << endl;
+	out << "Сняты ли по книгам фильмы: " << obj.films << endl;
 	return out;
 }
 
@@ -62,15 +65,16 @@ istream& operator>>(istream& in, Fantastic& obj) {
 	setlocale(LC_ALL, "Russian");
 	cout << "Введите данные:" << endl << endl;
 	cout << "ФИО писателя фантаста: ";
-	getchar();
+	//getchar();
 	getline(cin, obj.fio);
 	cout << "Годы жизни: ";
 	cin >> obj.live;
 	cout << "Произведения: ";
-	getchar();
+	//getchar();
 	getline(cin, obj.works);
+
 	cout << "Сняты ли по книгам фильмы: ";
-	getchar();
+	//getchar();
 	getline(cin, obj.films);
 	return in;
 }

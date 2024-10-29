@@ -45,9 +45,14 @@ ofstream& operator<<(ofstream& fout, Novel& obj) {
 }
 
 ifstream& operator>>(ifstream& fin, Novel& obj) {
-	fin >> obj.fio >> obj.live >> obj.works >> obj.bio;
+	getline(fin >> ws, obj.fio);
+	getline(fin >> ws, obj.live);
+	getline(fin >> ws, obj.works);
+	getline(fin >> ws, obj.bio);
 	return fin;
 }
+
+
 
 ostream& operator<<(ostream& out, Novel& obj) {
 	setlocale(LC_ALL, "Russian");
@@ -61,16 +66,19 @@ ostream& operator<<(ostream& out, Novel& obj) {
 istream& operator>>(istream& in, Novel& obj) {
 	setlocale(LC_ALL, "Russian");
 	cout << "Введите данные:" << endl << endl;
+
 	cout << "ФИО писателя романтиста: ";
-	getchar();
-	getline(cin, obj.fio);
+	getline(in, obj.fio);
+	getline(in, obj.fio);
 	cout << "Годы жизни: ";
-	cin >> obj.live;
+	getline(in, obj.live);
+
 	cout << "Произведения: ";
-	getchar();
-	getline(cin, obj.works);
+	getline(in, obj.works);
+
 	cout << "Краткая биография: ";
-	getchar();
-	getline(cin, obj.bio);
+	getline(in, obj.bio);
+
 	return in;
 }
+
