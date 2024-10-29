@@ -42,7 +42,9 @@ ofstream& operator<<(ofstream& fout, Poet& obj) {
 }
 
 ifstream& operator>>(ifstream& fin, Poet& obj) {
-	fin >> obj.fio >> obj.live >> obj.works;
+	getline(fin >> ws, obj.fio);
+	getline(fin >> ws, obj.live);
+	getline(fin >> ws, obj.works);
 	return fin;
 }
 
